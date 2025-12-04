@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "288842837392-2t5rlhsn6681m59ad731b9896dcuid8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.harshRajpurohit.we_chat",
+            "certificate_hash": "a1bacb8ee5a5ab1db5cf1ed60d276853f9241c4a"
+          }
+        },
+        {
           "client_id": "288842837392-gse3j6u9fferoav9leh2ik3468asfeup.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
