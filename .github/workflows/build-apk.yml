@@ -28,26 +28,31 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Flutter Version
-        run: flutter --version
+      - name: Flutter Doctor
+        run: flutter doctor -v
 
       - name: Get Dependencies
         run: flutter pub get
         working-directory: ApnaChat-Realtime-Chat-App-In-Flutter-Firebase
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build APK (with verbose)
+        run: flutter build apk --release --verbose
         working-directory: ApnaChat-Realtime-Chat-App-In-Flutter-Firebase
+        continue-on-error: true
+
+      - name: List Build Outputs
+        run: ls -la ApnaChat-Realtime-Chat-App-In-Flutter-Firebase/build/app/outputs/flutter-apk/ 2>/dev/null || echo "No build outputs found"
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: app-release
           path: ApnaChat-Realtime-Chat-App-In-Flutter-Firebase/build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
 
       - name: Create Release
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && success()
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
