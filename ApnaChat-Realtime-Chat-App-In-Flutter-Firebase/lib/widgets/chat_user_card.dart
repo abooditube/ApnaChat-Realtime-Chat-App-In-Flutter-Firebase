@@ -76,7 +76,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                 trailing: _message == null
                     ? null //show nothing when no message is sent
                     : _message!.read.isEmpty &&
-                            _message!.fromId != APIs.user.uid
+                            _message!.fromId != APIs.currentUserId
                         ?
                         //show for unread message
                         const SizedBox(
