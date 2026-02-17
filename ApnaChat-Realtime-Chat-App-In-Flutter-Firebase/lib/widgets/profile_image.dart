@@ -17,7 +17,7 @@ class ProfileImage extends StatelessWidget {
         width: size,
         height: size,
         fit: BoxFit.cover,
-        imageUrl: url ?? APIs.user.photoURL.toString(),
+        imageUrl: url ?? APIs.user?.photoURL?.toString() ?? '',
         errorWidget: (context, url, error) =>
             const CircleAvatar(child: Icon(CupertinoIcons.person)),
       ),
